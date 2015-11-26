@@ -1,0 +1,52 @@
+$typeahead-boxshadow: rgba(0, 0, 0, 0.2);
+
+.twitter-typeahead {
+  // scss-lint:disable ImportantRule
+  display: block !important;
+  // scss-lint:enable ImportantRule
+  position: relative;
+  width: 100%;
+
+  // scss-lint:disable all
+  .tt-suggestion:hover {
+    background-color: $dropdown-link-hover-bg;
+    background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+    background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+    background-repeat: repeat-x;
+    color: $dropdown-link-hover-color;
+  }
+  // scss-lint:enable all
+}
+
+// scss-lint:disable PropertyCount, VendorPrefix
+.tt-menu {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: $dropdown-bg;
+  border: $dropdown-border;
+  border-bottom-width: 2px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border-right-width: 2px;
+  -moz-box-shadow: 0 5px 10px $typeahead-boxshadow;
+  -webkit-box-shadow: 0 5px 10px $typeahead-boxshadow;
+  box-shadow: 0 5px 10px $typeahead-boxshadow;
+  margin-top: $line-height-computed * 2;
+  min-width: 160px;
+  padding: 5px 0;
+  width: 100%;
+}
+// scss-lint:enable PropertyCount, VendorPrefix
+.tt-suggestion {
+  display: block;
+  padding: 3px 20px;
+
+  p { margin: 0; }
+}
+
+.tt-cursor a { color: $dropdown-link-color; }

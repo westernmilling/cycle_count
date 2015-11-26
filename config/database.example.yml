@@ -1,0 +1,17 @@
+default: &default
+  adapter: mysql2
+  username: travis
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: cycle_count
+
+test:
+  <<: *default
+  database: cycle_count_test
+
+production:
+  <<: *default
+  database: cycle_count

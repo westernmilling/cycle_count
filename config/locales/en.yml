@@ -1,0 +1,39 @@
+en:
+  home:
+    greeting: 'Welcome to simple loads.'
+    title: 'simple loads'
+  loads:
+    dispatch:
+      edit:
+        link_to: 'Dispatch'
+        submit: 'Save'
+        title: 'Dispatch Load'
+      update:
+        failure: 'Load dispatched successfully'
+        success: 'Failed to dispatch the Load'
+    create:
+      success: 'Load created successfully'
+    edit:
+      link_to: 'Edit'
+      submit: 'Save'
+      title: 'Edit Load'
+    index:
+      none_found: 'No loads found'
+      return_to: 'Return to loads'
+      title: 'Loads'
+    new:
+      link_to: 'New Load'
+      submit: 'Save'
+      title: 'New Load'
+    show:
+      return_to: 'Return to load'
+      title: 'Load'
+    update:
+      success: 'Load updated successfully'
+  dispatch_load:
+    errors:
+      dispatched: 'You may not dispatch a load that has already been dispatched'
+      shipped: 'You may not dispatch a load that has been shipped'
+  load_mailer:
+    dispatched:
+      subject: 'Load Dispatched'
