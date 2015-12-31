@@ -1,2 +1,7 @@
 # cycle_count
-Inventory cycle counting, small child style
+
+Simple inventory cycle counting.
+
+## Running the app
+
+`foreman start`
