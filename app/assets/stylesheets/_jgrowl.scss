@@ -1,0 +1,122 @@
+// scss-lint:disable all
+div.jGrowl {
+  z-index: 9999;
+  color: #fff;
+  font-size: 12px;
+}
+
+div.jGrowl div.jGrowl-header {
+  font-weight: bold;
+}
+
+/** Normal Style Positions **/
+div.jGrowl {
+	position:			absolute;
+}
+
+body > div.jGrowl {
+  position: fixed;
+}
+
+div.jGrowl.top-left {
+	left: 				0px;
+	top: 				0px;
+}
+
+div.jGrowl.top-right {
+	right: 				0px;
+	top: 				0px;
+}
+
+div.jGrowl.bottom-left {
+	left: 				0px;
+	bottom:				0px;
+}
+
+div.jGrowl.bottom-right {
+	right: 				0px;
+	bottom: 			0px;
+}
+
+div.jGrowl.center {
+	top: 				0px;
+	width: 				50%;
+	left: 				25%;
+}
+
+/** Cross Browser Styling **/
+div.center div.jGrowl-notification, div.center div.jGrowl-closer {
+	margin-left: 		auto;
+	margin-right: 		auto;
+}
+
+div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
+	// background-color: 		#000;
+  // border:                 1px solid #000;
+	opacity: 				.85;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
+	zoom: 					1;
+	width: 					235px;
+	padding: 				10px;
+	margin-top: 			5px;
+	margin-bottom: 			5px;
+	// font-family: 			Tahoma, Arial, Helvetica, sans-serif;
+	// font-size: 				1em;
+	text-align: 			left;
+	display: 				none;
+	-moz-border-radius: 	5px;
+	-webkit-border-radius:	5px;
+}
+
+div.jGrowl div.jGrowl-notification {
+	min-height: 			40px;
+}
+
+div.jGrowl div.jGrowl-notification,
+div.jGrowl div.jGrowl-closer {
+	margin: 				10px;
+}
+
+div.jGrowl div.jGrowl-notification div.jGrowl-close {
+	z-index:				99;
+	float: 					right;
+	font-weight: 			bold;
+	font-size: 				1em;
+	cursor:					pointer;
+}
+
+div.jGrowl div.jGrowl-notification .jGrowl-close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+
+div.jGrowl div.jGrowl-notification .jGrowl-close:hover,
+div.jGrowl div.jGrowl-notification .jGrowl-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+div.jGrowl div.jGrowl-notification button.jGrowl-close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+@media print {
+  div.jGrowl {
+    display: none;
+  }
+}
+// scss-lint:enable all
