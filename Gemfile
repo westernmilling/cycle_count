@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
+gem 'devise'
+gem 'devise_invitable'
 gem 'enumerize'
 gem 'figaro'
 gem 'gravatar_image_tag'
