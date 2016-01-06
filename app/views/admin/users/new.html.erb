@@ -1,0 +1,9 @@
+<h2>New User</h2>
+
+<%= simple_form_for(entry, as: :entry, method: :post, url: admin_users_path) do |f| %>
+  <%= render partial: 'form', locals: { f: f, model: entry } %>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+<%= link_to 'Return to Users', admin_users_path %>

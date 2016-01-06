@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
          :recoverable,
          :rememberable,
          :trackable
+
   validates :name, presence: true
 
   def after_password_reset; end
