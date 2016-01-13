@@ -11,7 +11,23 @@ body > div {
   padding: 60px 15px 0;
 }
 
-td nav { text-align: right;}
+table {
+  clear: both;
+
+  td,
+  th {
+    text-align: center;
+  }
+}
+
+td nav { text-align: right; }
+
+form .btn { margin-bottom: 10px; }
+
+.btn-warning {
+  float: right;
+  margin-bottom: 10px;
+}
 
 .alert .errors { margin-top: 10px; }
 

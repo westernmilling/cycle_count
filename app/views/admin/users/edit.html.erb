@@ -1,0 +1,9 @@
+<h2>Edit User</h2>
+
+<%= simple_form_for(entry, as: :entry, method: :patch, url: admin_user_path(user)) do |f| %>
+  <%= render partial: 'form', locals: { f: f, model: entry } %>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+<%= link_to 'Return to Users', admin_users_path %>

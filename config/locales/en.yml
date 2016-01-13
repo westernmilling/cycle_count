@@ -6,3 +6,10 @@ en:
   devise:
     sign_in: 'Sign in'
     sign_out: 'Sign out'
+  users:
+    create:
+      success: 'User has been successfully created'
+      invalid: 'The user already exists'
+    update:
+      success: 'User has been successfully updated'
+      invalid: 'The user invitation details are not valid'

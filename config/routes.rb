@@ -5,5 +5,9 @@ Rails.application.routes.draw do
              },
              skip: [:registrations]
 
+  namespace :admin do
+    resources :users
+  end
+
   root 'site/home#index'
 end
