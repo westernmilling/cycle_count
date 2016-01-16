@@ -25,7 +25,10 @@ module MenuHelper
   end
 
   def admin_menu
-    []
+    menu_dropdown(t('admin.title')) do
+      concat menu_item(t('admin.admin_users.title'),
+                       admin_users_path)
+    end
   end
 
   def menu_dropdown(name, classes = [])

@@ -1,12 +1,14 @@
 namespace :cycle_count do
   desc 'Creates a new user'
-  task(:create_user, [:email_address, :name] => :environment) do |_t, args|
+  task(:create_user, \
+       [:email_address, :name, :role_name] => :environment) do |_t, args|
     password = Devise.friendly_token.first(15)
 
     user = User.find_by(email: args.email_address)
     user ||= User.new do |u|
       u.email = args.email_address
       u.name = args.name
+      u.role_name = args.role_name
       u.password = password
       u.password_confirmation = password
     end

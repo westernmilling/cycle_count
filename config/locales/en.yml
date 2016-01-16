@@ -1,15 +1,24 @@
 en:
   access_denied: 'Access Denied'
   home:
-    greeting: 'Welcome to the cycle count.'
-    title: 'cycle counts'
+    greeting: 'Welcome to the Cycle Count.'
+    title: 'Cycle Count'
   devise:
-    sign_in: 'Sign in'
-    sign_out: 'Sign out'
-  users:
+    sign_in: 'Sign In'
+    sign_out: 'Sign Out'
+  admin:
+    title: 'Admin'
+    edit:
+      save: 'Update User'
+      title: 'Edit User'
+    new:
+      save: 'Create User'
+      title: 'New User'
     create:
       success: 'User has been successfully created'
       invalid: 'The user already exists'
     update:
       success: 'User has been successfully updated'
       invalid: 'The user invitation details are not valid'
+    admin_users:
+      title: 'Users'

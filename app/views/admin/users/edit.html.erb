@@ -1,9 +1,15 @@
-<h2>Edit User</h2>
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('admin.edit.title') } do %>
+  <nav class="pull-right">
+    <%= link_to 'Return to Users',
+                admin_users_path,
+                class: 'btn btn-link' %>
+  </nav>
+<% end %>
 
-<%= simple_form_for(entry, as: :entry, method: :patch, url: admin_user_path(user)) do |f| %>
-  <%= render partial: 'form', locals: { f: f, model: entry } %>
+<%= simple_form_for(user, method: :patch, url: admin_user_path(user)) do |f| %>
+  <%= render partial: 'form', locals: { f: f, model: user } %>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit, t('admin.edit.save'), class: 'btn btn-primary' %>
   </div>
 <% end %>
-<%= link_to 'Return to Users', admin_users_path %>
