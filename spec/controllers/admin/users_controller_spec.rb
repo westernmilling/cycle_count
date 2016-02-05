@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Admin::UsersController, type: :controller do
   before do
+    allow(controller).to receive(:authorize) { authorized? }
+    allow(controller).to receive(:pundit_policy_authorized?) { authorized? }
+
     sign_in(user)
   end
 
@@ -10,81 +13,101 @@ RSpec.describe Admin::UsersController, type: :controller do
   describe 'GET edit' do
     before { get :edit, id: user.id }
 
-    let(:user) { create(:user) }
+    context 'when authorized' do
+      let(:authorized?) { true }
+      let(:user) { create(:user, :admin) }
 
-    it_behaves_like 'a successful request'
-    it_behaves_like 'an edit request'
+      it_behaves_like 'a successful request'
+      it_behaves_like 'an edit request'
+    end
+
+    context 'when not authorized' do
+      let(:authorized?) { raise_pundit_error UserPolicy }
+
+      it_behaves_like 'an unauthorized access to a resource'
+    end
   end
 
   describe 'GET index' do
-    before do
-      get :index
+    before { get :index }
+
+    context 'when authorized' do
+      let(:authorized?) { true }
+      let(:user) { create(:user, :admin) }
+
+      it_behaves_like 'a successful request'
+      it_behaves_like 'an index request'
     end
 
-    it_behaves_like 'a successful request'
-    it_behaves_like 'an index request'
+    context 'when not authorized' do
+      let(:authorized?) { raise_pundit_error UserPolicy }
+
+      it_behaves_like 'an unauthorized access to a resource'
+    end
   end
 
   describe 'PATCH update' do
     before do
-      allow(UpdateUser).to receive(:call) { context }
-
       patch :update,
             id: user.id,
-            entry: {
-              name: Faker::Name.name,
-              is_active: [0, 1].sample
-            }
+            user: user_params
     end
 
-    let(:user) { create(:user) }
-    let(:context) { double(user: user, message: '', success?: success?) }
-    let(:success?) { fail 'success? not set' }
+    let(:user) { create(:user, :admin) }
 
     context 'when the call is successful' do
-      let(:success?) { true }
+      let(:authorized?) { true }
+      let(:user_params) { attributes_for(:user, :admin) }
 
       it_behaves_like 'a redirect'
-      it { is_expected.to redirect_to(admin_users_path) }
+      it { is_expected.to redirect_to(admin_user_path(user)) }
       it { is_expected.to set_flash[:notice] }
     end
 
     context 'when the call is not successful' do
-      let(:success?) { false }
+      let(:authorized?) { true }
+      let(:user_params) { attributes_for(:user, :admin, name: nil) }
 
       it_behaves_like 'a successful request'
       it_behaves_like 'an edit request'
-      it { is_expected.to set_flash[:alert] }
+    end
+
+    context 'when not authorized' do
+      let(:authorized?) { raise_pundit_error UserPolicy }
+      let(:user_params) { nil }
+
+      it_behaves_like 'an unauthorized access to a resource'
     end
   end
 
   describe 'POST create' do
     before do
-      allow(CreateUser).to receive(:call) { context }
-
       post :create,
-           entry: {
-             email: Faker::Internet.email,
-             name: Faker::Name.name,
-             is_active: [0, 1].sample
-           }
+           user: user_params
     end
-    let(:context) { double(user: user, message: '', success?: success?) }
-    let(:success?) { fail 'success? not set' }
 
     context 'when the call is successful' do
-      let(:success?) { true }
+      let(:authorized?) { true }
+      let(:user_params) { attributes_for(:user, :admin) }
 
       it_behaves_like 'a redirect'
-      it { is_expected.to redirect_to(admin_users_path) }
+      it { is_expected.to redirect_to(admin_user_path(assigns(:user))) }
       it { is_expected.to set_flash[:notice] }
     end
+
     context 'when the call is not successful' do
-      let(:success?) { false }
+      let(:authorized?) { true }
+      let(:user_params) { attributes_for(:user, :admin, name: nil) }
 
       it_behaves_like 'a successful request'
       it_behaves_like 'a new request'
-      it { is_expected.to set_flash[:alert] }
+    end
+
+    context 'when not authorized' do
+      let(:authorized?) { raise_pundit_error UserPolicy }
+      let(:user_params) { nil }
+
+      it_behaves_like 'an unauthorized access to a resource'
     end
   end
 end

@@ -1,9 +1,15 @@
-<h2>New User</h2>
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('admin.new.title') } do %>
+  <nav class="pull-right">
+    <%= link_to 'Return to Users',
+                admin_users_path,
+                class: 'btn btn-link' %>
+  </nav>
+<% end %>
 
-<%= simple_form_for(entry, as: :entry, method: :post, url: admin_users_path) do |f| %>
-  <%= render partial: 'form', locals: { f: f, model: entry } %>
+<%= simple_form_for(user, method: :post, url: admin_users_path) do |f| %>
+  <%= render partial: 'form', locals: { f: f, model: user } %>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit, t('admin.new.save'), class: 'btn btn-primary' %>
   </div>
 <% end %>
-<%= link_to 'Return to Users', admin_users_path %>

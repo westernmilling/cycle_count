@@ -1,9 +1,14 @@
 module Admin
   class UsersController < ApplicationController
+    before_action -> { authorize :user }
     respond_to :html
 
     def index
-      @users = User.all.page(params[:page])
+      render_index
+    end
+
+    def show
+      render_show
     end
 
     def new
@@ -11,11 +16,12 @@ module Admin
     end
 
     def create
-      render_new and return unless entry.valid?
-
-      handle_service_result(user_create,
-                            -> { redirect_to admin_users_path },
-                            -> { render_new })
+      if user.save
+        redirect_to admin_user_path(user),
+                    notice: I18n.t('admin.create.success')
+      else
+        render_new
+      end
     end
 
     def edit
@@ -23,47 +29,46 @@ module Admin
     end
 
     def update
-      render_edit and return unless entry.valid?
-
-      handle_service_result(user_update,
-                            -> { redirect_to admin_users_path },
-                            -> { render_edit })
+      if user.update_attributes(user_params)
+        redirect_to admin_user_path(user),
+                    notice: I18n.t('admin.update.success')
+      else
+        render_edit
+      end
     end
 
     private
 
+    def render_index
+      render :index, locals: { users: users }
+    end
+
+    def render_show
+      render :show, locals: { user: user }
+    end
+
     def render_new
-      render :new, locals: { entry: entry }
+      render :new, locals: { user: user }
     end
 
     def render_edit
-      render :edit, locals: { entry: entry, user: user }
-    end
-
-    def entry
-      return @entry ||= UserEntry.new(user_params) \
-        if %{create new}.include?(params[:action])
-      @entry ||= find_user
-    end
-
-    def user_create
-      CreateUser.call(user_params)
-    end
-
-    def user_update
-      UpdateUser.call(user_params.merge(id: user.id))
+      render :edit, locals: { user: user }
     end
 
     def user_params
-      return {} if params[:entry].nil?
+      return {} if params[:user].nil?
 
       params
-        .require(:entry)
-        .permit(:email, :name, :is_active)
+        .require(:user)
+        .permit(:email, :name, :is_active, :role_name)
     end
 
     def user
       @user ||= params[:id] ? find_user : build_user
+    end
+
+    def users
+      @users ||= User.all.page(params[:page])
     end
 
     def build_user

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User signs in' do
-  given(:user) { create(:user) }
+  given(:user) { create(:user, :moderator) }
 
   context 'when the details are not valid' do
     scenario 'they see invalid email or password' do

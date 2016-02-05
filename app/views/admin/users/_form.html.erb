@@ -1,7 +1,11 @@
 <div class="form-inputs">
-  <%= f.error_notification %>
+  <%= error_messages model %>
 
   <%= f.input :email %>
   <%= f.input :name %>
-  <%= f.input :is_active, collection: (0..1) %>
+  <%= f.input :role_name,
+              label: 'Role',
+              collection: (User::ROLE_NAMES),
+              prompt: '-Choose a Role Type-' %>
+  <%= f.input :is_active, :as => :boolean %>
 </div>

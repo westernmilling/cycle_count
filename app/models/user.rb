@@ -5,7 +5,20 @@ class User < ActiveRecord::Base
          :rememberable,
          :trackable
 
-  validates :name, presence: true
+  model_stamper
+
+  ROLE_NAMES = %w(
+    admin
+    moderator
+    cycle_counter
+  ).freeze
+
+  validates :email, :name, :role_name, presence: true
+  validates :email, uniqueness: true, case_sensitive: false
 
   def after_password_reset; end
+
+  def set_stampers
+    User.stamper = current_user.email
+  end
 end
