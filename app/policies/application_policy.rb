@@ -54,20 +54,8 @@ class ApplicationPolicy
 
   protected
 
-  def admin?
-    user.role_name == 'admin'
-  end
-
-  def moderator?
-    user.role_name == 'moderator'
-  end
-
-  def cycle_counter?
-    user.role_name == 'cycle_counter'
-  end
-
   def role?(*roles)
     return false if user.nil?
-    user.role_name.in?(roles.to_a)
+    user.role_name.in?(roles)
   end
 end

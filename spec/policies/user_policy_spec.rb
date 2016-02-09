@@ -56,4 +56,10 @@ describe UserPolicy, type: :policy do
     it { is_expected.to permit_action(:edit) }
     it { is_expected.to permit_action(:destroy) }
   end
+
+  describe '.scope' do
+    subject { UserPolicy::Scope.new(user, user_to_manage).resolve }
+
+    it { is_expected.to eq user_to_manage }
+  end
 end

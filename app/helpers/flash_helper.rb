@@ -6,7 +6,7 @@ module FlashHelper
     error: :danger,
     info: :notice,
     warning: :alert
-  }
+  }.freeze
 
   def flash_messages
     safe_join(flash.each_with_object([]) do |(type, message), messages|
