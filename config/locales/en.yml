@@ -8,17 +8,35 @@ en:
     sign_out: 'Sign Out'
   admin:
     title: 'Admin'
-    edit:
-      save: 'Update User'
-      title: 'Edit User'
-    new:
-      save: 'Create User'
-      title: 'New User'
-    create:
-      success: 'User has been successfully created'
-      invalid: 'The user already exists'
-    update:
-      success: 'User has been successfully updated'
-      invalid: 'The user invitation details are not valid'
-    admin_users:
+    users:
+      edit:
+        save: 'Update User'
+        title: 'Edit User'
+      new:
+        save: 'Create User'
+        title: 'New User'
+      create:
+        success: 'User has been successfully created'
+        invalid: 'The user already exists'
+      update:
+        success: 'User has been successfully updated'
+        invalid: 'The user invitation details are not valid'
       title: 'Users'
+  locations:
+    title: 'Locations'
+    edit:
+      save: 'Update Location'
+      title: 'Edit Location'
+    new:
+      save: 'Create Location'
+      title: 'New Location'
+    create:
+      success: 'Location has been successfully created'
+      invalid: 'The location already exists'
+    update:
+      success: 'Location has been successfully updated'
+      invalid: 'The location details are not valid'
+    destroy:
+      success: 'Location has been successfully deleted'
+      failure: 'The location was not successfully deleted'
+      invalid: 'The location details are not valid'

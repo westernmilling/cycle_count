@@ -1,14 +1,14 @@
 <%= render layout: '/header',
            locals: { header: 'h2', title: t('.title') } do %>
   <nav class="pull-right">
-    <%= link_to 'Return to Users',
-                admin_users_path,
+    <%= link_to 'Return to Locations',
+                locations_path,
                 class: 'btn btn-link' %>
   </nav>
 <% end %>
 
-<%= simple_form_for(user, method: :post, url: admin_users_path) do |f| %>
-  <%= render partial: 'form', locals: { f: f, model: user } %>
+<%= simple_form_for(location, method: :post, url: locations_path) do |f| %>
+  <%= render partial: 'form', locals: { f: f, model: location } %>
   <div class="form-actions">
     <%= f.button :submit, t('.save'), class: 'btn btn-primary' %>
   </div>

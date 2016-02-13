@@ -5,6 +5,8 @@ Rails.application.routes.draw do
              },
              skip: [:registrations]
 
+  resources :locations
+
   namespace :admin do
     resources :users
   end

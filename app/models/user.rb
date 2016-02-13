@@ -17,8 +17,4 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, case_sensitive: false
 
   def after_password_reset; end
-
-  def set_stampers
-    User.stamper = current_user.email
-  end
 end

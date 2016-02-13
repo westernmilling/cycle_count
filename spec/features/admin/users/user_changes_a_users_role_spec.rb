@@ -20,13 +20,13 @@ feature 'User changes a users role' do
     scenario 'they see the user details with the new role' do
       visit edit_admin_user_path(user)
 
-      expect(page).to have_content I18n.t('admin.edit.title')
+      expect(page).to have_content I18n.t('admin.users.edit.title')
 
       select role, from: :user_role_name
 
-      click_button I18n.t('admin.edit.save')
+      click_button I18n.t('admin.users.edit.save')
 
-      expect(page).to have_content(I18n.t('admin.update.success'))
+      expect(page).to have_content(I18n.t('admin.users.update.success'))
       expect(page).to have_content(role)
     end
   end

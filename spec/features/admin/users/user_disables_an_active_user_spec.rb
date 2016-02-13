@@ -9,9 +9,9 @@ feature 'User disables an active user' do
     visit edit_admin_user_path(user)
 
     uncheck :user_is_active
-    click_on I18n.t('admin.edit.save')
+    click_on I18n.t('admin.users.edit.save')
 
-    expect(page).to have_content(I18n.t('admin.update.success'))
+    expect(page).to have_content(I18n.t('admin.users.update.success'))
     expect(page).to have_content('Inactive')
   end
 end

@@ -34,6 +34,10 @@ describe ApplicationPolicy, type: :policy do
     it { is_expected.not_to permit_action(:destroy) }
   end
 
+  describe 'scope' do
+    it { expect(Pundit.policy_scope(user, User).all).to match_array User.all }
+  end
+
   describe '.scope' do
     subject { ApplicationPolicy::Scope.new(user, record).resolve }
 
