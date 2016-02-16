@@ -18,7 +18,7 @@ module Admin
     def create
       if user.save
         redirect_to admin_user_path(user),
-                    notice: I18n.t('admin.create.success')
+                    notice: t('.success')
       else
         render_new
       end
@@ -31,7 +31,7 @@ module Admin
     def update
       if user.update_attributes(user_params)
         redirect_to admin_user_path(user),
-                    notice: I18n.t('admin.update.success')
+                    notice: t('.success')
       else
         render_edit
       end

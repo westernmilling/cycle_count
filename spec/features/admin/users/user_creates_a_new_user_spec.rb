@@ -20,9 +20,9 @@ feature 'User creates a new user' do
       select role, from: :user_role_name
       check :user_is_active
 
-      click_button I18n.t('admin.new.save')
+      click_button I18n.t('admin.users.new.save')
 
-      expect(page).to have_content(I18n.t('admin.create.success'))
+      expect(page).to have_content(I18n.t('admin.users.create.success'))
       expect(page).to have_content(name)
       expect(page).to have_content(email)
       expect(page).to have_content(role)
@@ -33,7 +33,7 @@ feature 'User creates a new user' do
     scenario 'they see an error message' do
       visit new_admin_user_path
 
-      click_button I18n.t('admin.new.save')
+      click_button I18n.t('admin.users.new.save')
 
       expect(page).to have_content('error')
     end

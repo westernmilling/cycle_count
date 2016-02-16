@@ -46,6 +46,24 @@ RSpec.describe Admin::UsersController, type: :controller do
     end
   end
 
+  describe 'GET show' do
+    before { get :show, id: user.id }
+
+    context 'when authorized' do
+      let(:authorized?) { true }
+      let(:user) { create(:user, :admin) }
+
+      it_behaves_like 'a successful request'
+      it_behaves_like 'a show request'
+    end
+
+    context 'when not authorized' do
+      let(:authorized?) { raise_pundit_error UserPolicy }
+
+      it_behaves_like 'an unauthorized access to a resource'
+    end
+  end
+
   describe 'PATCH update' do
     before do
       patch :update,

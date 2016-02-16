@@ -4,6 +4,7 @@ module MenuHelper
       if user_signed_in?
         [
           root_menu,
+          menu_item(t('locations.title'), locations_path),
           admin_menu,
           user_menu
         ].join.html_safe
@@ -26,7 +27,7 @@ module MenuHelper
 
   def admin_menu
     menu_dropdown(t('admin.title')) do
-      concat menu_item(t('admin.admin_users.title'),
+      concat menu_item(t('admin.users.title'),
                        admin_users_path)
     end
   end

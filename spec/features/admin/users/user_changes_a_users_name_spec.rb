@@ -20,13 +20,13 @@ feature 'User changes a users name' do
     scenario 'they see the user details with the new name' do
       visit edit_admin_user_path(user)
 
-      expect(page).to have_content I18n.t('admin.edit.title')
+      expect(page).to have_content I18n.t('admin.users.edit.title')
 
       fill_in :user_name, with: name
 
-      click_button I18n.t('admin.edit.save')
+      click_button I18n.t('admin.users.edit.save')
 
-      expect(page).to have_content(I18n.t('admin.update.success'))
+      expect(page).to have_content(I18n.t('admin.users.update.success'))
       expect(page).to have_content(name)
     end
   end
@@ -35,11 +35,11 @@ feature 'User changes a users name' do
     scenario 'they see an error message' do
       visit edit_admin_user_path(user)
 
-      expect(page).to have_content I18n.t('admin.edit.title')
+      expect(page).to have_content I18n.t('admin.users.edit.title')
 
       fill_in :user_name, with: nil
 
-      click_button I18n.t('admin.edit.save')
+      click_button I18n.t('admin.users.edit.save')
 
       expect(page).to have_content('error')
     end
