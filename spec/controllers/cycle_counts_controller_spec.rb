@@ -1,38 +1,38 @@
 require 'rails_helper'
 
-RSpec.describe LocationsController, type: :controller do
+RSpec.describe CycleCountsController, type: :controller do
   before do
     sign_in(build_stubbed(:user))
 
     allow(controller).to receive(:authorize) { authorized? }
     allow(controller).to receive(:pundit_policy_authorized?) { authorized? }
-    allow(Location).to receive(:find) { location }
+    allow(CycleCount).to receive(:find) { cycle_count }
   end
-  let(:location) { create(:location) }
+
+  let(:cycle_count) { build_stubbed(:cycle_count) }
 
   describe 'GET index' do
     before do
-      allow(controller).to receive(:locations) { locations }
+      allow(controller).to receive(:cycle_counts) { cycle_counts }
       get :index
     end
-
     let(:authorized?) { true }
-    let(:locations) { build_stubbed_list(:location, 2) }
+    let(:cycle_counts) { build_stubbed_list(:cycle_count, 2) }
 
     it_behaves_like 'a successful request'
     it_behaves_like 'an index request'
-    it { expect(send(:locations)).to be_kind_of(Array) }
-    it { expect(send(:locations)[0]).to be_kind_of(Location) }
-    it { expect(send(:locations).size).to eq locations.size }
+    it { expect(send(:cycle_counts)).to be_kind_of(Array) }
+    it { expect(send(:cycle_counts)[0]).to be_kind_of(CycleCount) }
+    it { expect(send(:cycle_counts).size).to eq(cycle_counts.size) }
   end
 
   describe 'GET show' do
-    before { get :show, id: location.id }
+    before { get :show, id: cycle_count.id }
     let(:authorized?) { true }
 
     it_behaves_like 'a successful request'
     it_behaves_like 'a show request'
-    it { expect(send(:location)).to be_kind_of(Location) }
+    it { expect(send(:cycle_count)).to be_kind_of(CycleCount) }
   end
 
   describe 'GET new' do
@@ -43,29 +43,29 @@ RSpec.describe LocationsController, type: :controller do
 
       it_behaves_like 'a successful request'
       it_behaves_like 'a new request'
-      it { expect(send(:location)).to be_kind_of(Location) }
+      it { expect(send(:cycle_count)).to be_kind_of(CycleCount) }
     end
 
     context 'when user is not authorized' do
-      let(:authorized?) { raise_pundit_error LocationPolicy }
+      let(:authorized?) { raise_pundit_error CycleCountPolicy }
 
       it_behaves_like 'an unauthorized access to a resource'
     end
   end
 
   describe 'GET edit' do
-    before { get :edit, id: location.id }
+    before { get :edit, id: cycle_count.id }
 
     context 'when authorized' do
       let(:authorized?) { true }
 
       it_behaves_like 'a successful request'
       it_behaves_like 'an edit request'
-      it { expect(send(:location)).to be_kind_of(Location) }
+      it { expect(send(:cycle_count)).to be_kind_of(CycleCount) }
     end
 
     context 'when not authorized' do
-      let(:authorized?) { raise_pundit_error LocationPolicy }
+      let(:authorized?) { raise_pundit_error CycleCountPolicy }
 
       it_behaves_like 'an unauthorized access to a resource'
     end
@@ -73,10 +73,12 @@ RSpec.describe LocationsController, type: :controller do
 
   describe 'PATCH update' do
     before do
-      allow(location).to receive(:update_attributes) { update? }
-
-      patch :update, id: location.id, location: attributes_for(:location)
+      allow(cycle_count).to receive(:update_attributes) { update? }
+      patch :update,
+            id: cycle_count.id,
+            cycle_count: attributes_for(:cycle_count)
     end
+
     let(:update?) { fail 'update? not set' }
 
     context 'when the call is successful' do
@@ -84,11 +86,11 @@ RSpec.describe LocationsController, type: :controller do
       let(:update?) { true }
 
       it_behaves_like 'a redirect'
-      it { is_expected.to redirect_to(location_path(location)) }
+      it { is_expected.to redirect_to(cycle_count_path(cycle_count)) }
       it do
         is_expected
           .to set_flash[:notice]
-          .to I18n.t('locations.update.success')
+          .to I18n.t('cycle_counts.update.success')
       end
     end
 
@@ -101,12 +103,13 @@ RSpec.describe LocationsController, type: :controller do
       it do
         is_expected
           .to set_flash[:alert]
-          .to I18n.t('locations.update.failure')
+          .to(I18n.t('cycle_counts.update.failure'))
       end
     end
 
     context 'when not authorized' do
-      let(:authorized?) { raise_pundit_error LocationPolicy }
+      let(:authorized?) { raise_pundit_error CycleCountPolicy }
+      let(:cycle_count_params) { nil }
 
       it_behaves_like 'an unauthorized access to a resource'
     end
@@ -114,12 +117,13 @@ RSpec.describe LocationsController, type: :controller do
 
   describe 'POST create' do
     before do
-      allow(location).to receive(:save) { create? }
-      allow(Location).to receive(:new) { location }
+      allow(cycle_count).to receive(:save) { create? }
+      allow(CycleCount).to receive(:new) { cycle_count }
 
-      post :create, location: nil
+      post :create, cycle_count: nil
     end
-    let(:location) { build_stubbed(:location) }
+
+    let(:cycle_count) { build_stubbed(:cycle_count) }
     let(:create?) { fail 'create? not set' }
 
     context 'when the call is successful' do
@@ -127,11 +131,11 @@ RSpec.describe LocationsController, type: :controller do
       let(:create?) { true }
 
       it_behaves_like 'a redirect'
-      it { is_expected.to redirect_to(location_path(location)) }
+      it { is_expected.to redirect_to(cycle_count_path(cycle_count)) }
       it do
         is_expected
           .to set_flash[:notice]
-          .to I18n.t('locations.create.success')
+          .to I18n.t('cycle_counts.create.success')
       end
     end
 
@@ -144,12 +148,13 @@ RSpec.describe LocationsController, type: :controller do
       it do
         is_expected
           .to set_flash[:alert]
-          .to I18n.t('locations.create.failure')
+          .to(I18n.t('cycle_counts.create.failure'))
       end
     end
 
     context 'when not authorized' do
-      let(:authorized?) { raise_pundit_error LocationPolicy }
+      let(:authorized?) { raise_pundit_error CycleCountPolicy }
+      let(:cycle_count_params) { nil }
 
       it_behaves_like 'an unauthorized access to a resource'
     end
@@ -157,21 +162,21 @@ RSpec.describe LocationsController, type: :controller do
 
   describe 'DELETE destroy' do
     before do
-      allow(location).to receive(:destroy) { destroy? }
-      allow(Location).to receive(:find) { location }
+      allow(cycle_count).to receive(:destroy) { destroy? }
+      allow(CycleCount).to receive(:find) { cycle_count }
 
-      delete :destroy, id: location.id
+      delete :destroy, id: cycle_count.id
     end
 
     let(:destroy?) { fail 'destroy? not set' }
-    let(:location) { build_stubbed(:location) }
+    let(:cycle_count) { build_stubbed(:cycle_count) }
 
     context 'when the destroy is successful' do
       let(:authorized?) { true }
       let(:destroy?) { true }
 
       it_behaves_like 'a redirect'
-      it { is_expected.to redirect_to(locations_path) }
+      it { is_expected.to redirect_to(cycle_counts_path) }
       it { is_expected.to set_flash[:notice] }
     end
 
@@ -180,11 +185,11 @@ RSpec.describe LocationsController, type: :controller do
       let(:destroy?) { false }
 
       it_behaves_like 'a redirect'
-      it { is_expected.to redirect_to(locations_path) }
+      it { is_expected.to redirect_to(cycle_counts_path) }
       it do
         is_expected
           .to set_flash[:alert]
-          .to(I18n.t('locations.destroy.failure'))
+          .to(I18n.t('cycle_counts.destroy.failure'))
       end
     end
 

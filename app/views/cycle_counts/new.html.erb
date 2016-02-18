@@ -1,13 +1,13 @@
 <%= render layout: '/header',
            locals: { header: 'h2', title: t('.title') } do %>
   <nav class="pull-right">
-    <%= link_to 'Return to Location',
-                locations_path,
+    <%= link_to 'Return to Cycle Counts',
+                cycle_counts_path,
                 class: 'btn btn-link' %>
   </nav>
 <% end %>
 
-<%= simple_form_for(resource, method: :patch, url: location_path(resource)) do |f| %>
+<%= simple_form_for(resource, method: :post, url: cycle_counts_path) do |f| %>
   <%= render partial: 'form', locals: { f: f, model: resource } %>
   <div class="form-actions">
     <%= f.button :submit, t('.save'), class: 'btn btn-primary' %>

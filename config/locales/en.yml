@@ -18,9 +18,11 @@ en:
       create:
         success: 'User has been successfully created'
         invalid: 'The user already exists'
+        failure: 'The user was not successfully updated'
       update:
         success: 'User has been successfully updated'
         invalid: 'The user invitation details are not valid'
+        failure: 'The user was not successfully updated'
       title: 'Users'
   locations:
     title: 'Locations'
@@ -33,10 +35,32 @@ en:
     create:
       success: 'Location has been successfully created'
       invalid: 'The location already exists'
+      failure: 'The location was not successfully created'
     update:
       success: 'Location has been successfully updated'
       invalid: 'The location details are not valid'
+      failure: 'The location was not successfully updated'
     destroy:
       success: 'Location has been successfully deleted'
       failure: 'The location was not successfully deleted'
       invalid: 'The location details are not valid'
+  cycle_counts:
+    title: 'Cycle Counts'
+    edit:
+      save: 'Update Cycle Count'
+      title: 'Edit Cycle Count'
+    new:
+      save: 'Create Cycle Count'
+      title: 'New Cycle Count'
+    create:
+      success: 'Cycle count has been successfully created'
+      invalid: 'The cycle count already exists'
+      failure: 'Cycle count was not successfully created'
+    update:
+      success: 'Cycle count has been successfully updated'
+      invalid: 'The cycle count details are not valid'
+      failure: 'Cycle count was not successfully updated'
+    destroy:
+      success: 'Cycle count has been successfully deleted'
+      failure: 'The cycle count was not successfully deleted'
+      invalid: 'The cycle count details are not valid'

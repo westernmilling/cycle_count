@@ -7,8 +7,8 @@
   </nav>
 <% end %>
 
-<%= simple_form_for(location, method: :post, url: locations_path) do |f| %>
-  <%= render partial: 'form', locals: { f: f, model: location } %>
+<%= simple_form_for(resource, method: :post, url: locations_path) do |f| %>
+  <%= render partial: 'form', locals: { f: f, model: resource } %>
   <div class="form-actions">
     <%= f.button :submit, t('.save'), class: 'btn btn-primary' %>
   </div>

@@ -20,6 +20,7 @@ module Admin
         redirect_to admin_user_path(user),
                     notice: t('.success')
       else
+        flash[:alert] = t('.failure')
         render_new
       end
     end
@@ -33,6 +34,7 @@ module Admin
         redirect_to admin_user_path(user),
                     notice: t('.success')
       else
+        flash[:alert] = t('.failure')
         render_edit
       end
     end

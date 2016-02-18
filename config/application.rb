@@ -11,7 +11,7 @@ require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
 
-module CycleCount
+module CycleCountApp
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
 
