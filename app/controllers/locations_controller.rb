@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  include BasicCRUDHandler
   before_action -> { authorize :location }
   respond_to :html
 
@@ -14,31 +15,16 @@ class LocationsController < ApplicationController
     render_new
   end
 
-  def create
-    if location.save
-      redirect_to location_path(location),
-                  notice: t('.success')
-    else
-      render_new
-    end
-  end
-
   def edit
     render_edit
   end
 
-  def update
-    if location.update_attributes(location_params)
-      redirect_to location_path(location),
-                  notice: t('.success')
-    else
-      render_edit
-    end
-  end
-
   def destroy
-    location.destroy
-    redirect_to locations_path, notice: t('.success')
+    if location.destroy
+      redirect_to locations_path, notice: t('.success')
+    else
+      redirect_to locations_path, alert: t('.failure')
+    end
   end
 
   private
@@ -52,11 +38,11 @@ class LocationsController < ApplicationController
   end
 
   def render_new
-    render :new, locals: { location: location }
+    render :new, locals: { resource: location }
   end
 
   def render_edit
-    render :edit, locals: { location: location }
+    render :edit, locals: { resource: location }
   end
 
   def location_params

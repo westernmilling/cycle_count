@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Location, type: :model do
   subject { build(:location) }
-  it { is_expected.to belong_to(:created_by) }
-  it { is_expected.to belong_to(:updated_by) }
+  it { is_expected.to belong_to :created_by }
+  it { is_expected.to belong_to :updated_by }
 
   it { is_expected.to validate_presence_of :location_number }
   it { is_expected.to validate_presence_of :area_number }

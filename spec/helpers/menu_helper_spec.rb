@@ -25,8 +25,8 @@ RSpec.describe MenuHelper, type: :helper do
       let(:user) { build_stubbed(:user) }
 
       it { is_expected.to have_selector 'ul' }
-      it { is_expected.to have_selector 'ul li', count: 5 }
-      it { is_expected.to have_selector 'ul li a', count: 5 }
+      it { is_expected.to have_selector 'ul li', count: 6 }
+      it { is_expected.to have_selector 'ul li a', count: 6 }
       it { is_expected.to have_content I18n.t('devise.sign_out') }
       it { is_expected.to have_content user.name }
     end

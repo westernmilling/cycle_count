@@ -1,0 +1,14 @@
+<%= link_to 'Create Cycle Count', new_cycle_count_path(), class: 'btn btn-warning' %>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Location Description</th>
+      <th>Requested Date</th>
+      <th colspan="3">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @cycle_counts %>
+  </tbody>
+</table>
+<%= paginate @cycle_counts %>

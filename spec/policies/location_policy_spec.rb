@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe LocationPolicy, type: :policy do
-  let(:user) { create(:user, :moderator) }
-  let(:location_to_manage) { create(:location) }
+  let(:user) { build(:user, :moderator) }
+  let(:location_to_manage) { build(:location) }
 
   subject { LocationPolicy.new(user, location_to_manage) }
 

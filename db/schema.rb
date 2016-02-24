@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211194435) do
+ActiveRecord::Schema.define(version: 20160218190422) do
+
+  create_table "cycle_counts", force: :cascade do |t|
+    t.integer  "location_id",    limit: 4
+    t.datetime "requested_date",           null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "creator_id",     limit: 4
+    t.integer  "updater_id",     limit: 4
+    t.integer  "deleter_id",     limit: 4
+  end
+
+  add_index "cycle_counts", ["location_id"], name: "index_cycle_counts_on_location_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.integer  "location_number", limit: 4,   null: false
@@ -60,4 +72,5 @@ ActiveRecord::Schema.define(version: 20160211194435) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cycle_counts", "locations"
 end

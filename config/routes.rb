@@ -5,6 +5,7 @@ Rails.application.routes.draw do
              },
              skip: [:registrations]
 
+  resources :cycle_counts
   resources :locations
 
   namespace :admin do

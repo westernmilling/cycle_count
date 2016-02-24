@@ -5,6 +5,7 @@ module MenuHelper
         [
           root_menu,
           menu_item(t('locations.title'), locations_path),
+          menu_item(t('cycle_counts.title'), cycle_counts_path),
           admin_menu,
           user_menu
         ].join.html_safe

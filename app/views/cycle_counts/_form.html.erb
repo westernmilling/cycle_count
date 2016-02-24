@@ -1,0 +1,10 @@
+<div class="form-inputs">
+  <%= error_messages model %>
+
+  <%= f.association :location,
+                    collection: Location.all,
+                    label_method: :description,
+                    value_method: :id,
+                    prompt: 'Choose a Location' %>
+  <%= f.input :requested_date, as: :date, html5: true %>
+</div>
