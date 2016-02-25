@@ -67,10 +67,12 @@ module Admin
 
     def user
       @user ||= params[:id] ? find_user : build_user
+      @user.decorate
     end
 
     def users
       @users ||= User.all.page(params[:page])
+      @users = PaginatingDecorator.decorate(@users)
     end
 
     def build_user

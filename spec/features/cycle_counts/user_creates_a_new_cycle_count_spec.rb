@@ -18,7 +18,7 @@ feature 'User creates a new cycle_count' do
 
       expect(page).to have_content(I18n.t('cycle_counts.create.success'))
       expect(page).to have_content(locations[0].description)
-      expect(page).to have_content(requested_date)
+      expect(page).to have_content(requested_date.strftime('%m/%d/%Y'))
       expect(page).to have_content(user.email)
     end
   end

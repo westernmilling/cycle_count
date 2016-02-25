@@ -10,18 +10,14 @@ feature 'User views a list of cycle_counts' do
     scenario 'they see cycle_counts' do
       visit cycle_counts_path
 
-      expect_user_row cycle_counts[0]
-      expect_user_row cycle_counts[1]
-      expect_user_row cycle_counts[2]
+      expect_user_row cycle_counts[0].decorate
+      expect_user_row cycle_counts[1].decorate
+      expect_user_row cycle_counts[2].decorate
     end
   end
 
   def expect_user_row(cycle_count)
-    [
-      :location_id,
-      :requested_date
-    ].each do |attribute|
-      expect(page).to have_content(cycle_count.send(attribute))
-    end
+    expect(page).to have_content(cycle_count.location.description)
+    expect(page).to have_content(cycle_count.formatted_requested_date)
   end
 end
