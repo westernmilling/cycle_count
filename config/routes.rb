@@ -5,7 +5,10 @@ Rails.application.routes.draw do
              },
              skip: [:registrations]
 
-  resources :cycle_counts
+  resources :cycle_counts do
+    resources :pallets
+  end
+
   resources :locations
 
   namespace :admin do
