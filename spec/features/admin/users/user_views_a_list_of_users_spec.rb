@@ -20,8 +20,7 @@ feature 'User views a list of users' do
     [
       :name,
       :email,
-      :role_name,
-      :is_active
+      :role_name
     ].each do |attribute|
       expect(page).to have_content(user.send(attribute))
     end

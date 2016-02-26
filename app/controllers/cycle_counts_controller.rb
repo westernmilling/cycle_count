@@ -55,10 +55,12 @@ class CycleCountsController < ApplicationController
 
   def cycle_count
     @cycle_count ||= params[:id] ? find_cycle_count : build_cycle_count
+    @cycle_count.decorate
   end
 
   def cycle_counts
     @cycle_counts ||= CycleCount.all.page(params[:page])
+    @cycle_counts = PaginatingDecorator.decorate(@cycle_counts)
   end
 
   def build_cycle_count

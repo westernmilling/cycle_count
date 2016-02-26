@@ -13,7 +13,7 @@ feature 'User changes location description' do
     click_on I18n.t('cycle_counts.edit.save')
 
     expect(page).to have_content(I18n.t('cycle_counts.update.success'))
-    expect(page).to have_content(date)
+    expect(page).to have_content(date.strftime('%m/%d/%Y'))
     expect(page).to have_content(cycle_count.created_by.email)
     expect(page).to have_content(user.email)
   end

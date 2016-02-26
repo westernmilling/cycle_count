@@ -55,6 +55,7 @@ class LocationsController < ApplicationController
 
   def location
     @location ||= params[:id] ? find_location : build_location
+    @location.decorate
   end
 
   def locations

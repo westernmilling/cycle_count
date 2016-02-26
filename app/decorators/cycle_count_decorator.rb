@@ -1,8 +1,8 @@
-class UserDecorator < Draper::Decorator
+class CycleCountDecorator < Draper::Decorator
   delegate_all
 
-  def active_label
-    is_active == 1 ? 'Active' : 'Inactive'
+  def formatted_requested_date
+    requested_date.strftime('%m/%d/%Y')
   end
 
   def formatted_created_at

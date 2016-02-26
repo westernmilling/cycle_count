@@ -1,6 +1,6 @@
 <tr>
   <td><%= cycle_count.location.description %></td>
-  <td><%= cycle_count.requested_date %></td>
+  <td><%= cycle_count.formatted_requested_date %></td>
   <td><%= link_to 'Show', cycle_count_path(cycle_count) %></td>
   <td><%= link_to 'Edit', edit_cycle_count_path(cycle_count) %></td>
   <td><%= link_to 'Destroy', cycle_count, method: :delete,
