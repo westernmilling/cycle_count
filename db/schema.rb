@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218190422) do
+ActiveRecord::Schema.define(version: 20160226014344) do
 
   create_table "cycle_counts", force: :cascade do |t|
     t.integer  "location_id",    limit: 4
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(version: 20160218190422) do
     t.integer  "updater_id",      limit: 4
     t.integer  "deleter_id",      limit: 4
   end
+
+  create_table "pallets", force: :cascade do |t|
+    t.integer  "cycle_count_id", limit: 4
+    t.string   "pallet_number",  limit: 255,                     null: false
+    t.string   "check_state",    limit: 255, default: "Pending"
+    t.string   "check_location", limit: 255
+    t.string   "check_result",   limit: 255
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.integer  "creator_id",     limit: 4
+    t.integer  "updater_id",     limit: 4
+    t.integer  "deleter_id",     limit: 4
+  end
+
+  add_index "pallets", ["cycle_count_id"], name: "index_pallets_on_cycle_count_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255,             null: false
@@ -73,4 +88,5 @@ ActiveRecord::Schema.define(version: 20160218190422) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "cycle_counts", "locations"
+  add_foreign_key "pallets", "cycle_counts"
 end

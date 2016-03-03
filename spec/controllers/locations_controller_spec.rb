@@ -8,7 +8,7 @@ RSpec.describe LocationsController, type: :controller do
     allow(controller).to receive(:pundit_policy_authorized?) { authorized? }
     allow(Location).to receive(:find) { location }
   end
-  let(:location) { create(:location) }
+  let(:location) { build_stubbed(:location) }
 
   describe 'GET index' do
     before do

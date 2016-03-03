@@ -5,6 +5,7 @@ RSpec.describe CycleCount, type: :model do
   it { is_expected.to belong_to :location }
   it { is_expected.to belong_to :created_by }
   it { is_expected.to belong_to :updated_by }
+  it { is_expected.to have_many :pallets }
 
   it { is_expected.to validate_presence_of :location_id }
   it { is_expected.to validate_presence_of :requested_date }

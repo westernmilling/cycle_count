@@ -13,13 +13,13 @@ describe UserDecorator, type: :decorator do
   let(:updated_at) { Faker::Date.forward(30) }
   let(:is_active) { 0 }
 
-  describe '#reformatted_created_at' do
+  describe '#formatted_created_at' do
     subject { decorator.formatted_created_at }
 
     it { is_expected.to eq(created_at.strftime('%m/%d/%Y')) }
   end
 
-  describe '#reformatted_updated_at' do
+  describe '#formatted_updated_at' do
     subject { decorator.formatted_updated_at }
 
     it { is_expected.to eq(updated_at.strftime('%m/%d/%Y')) }

@@ -1,0 +1,17 @@
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('.title') } do %>
+  <nav class="pull-right">
+    <%= link_to 'Return to Cycle Count',
+                cycle_count_path(params[:cycle_count_id]),
+                class: 'btn btn-link' %>
+  </nav>
+<% end %>
+
+<%= simple_form_for(entry, as: :entry, method: :post,
+    url: cycle_count_pallets_path(params[:cycle_count_id])) do |f| %>
+  <%= render partial: 'form',
+             locals: { f: f, model: entry } %>
+  <div class="form-actions">
+    <%= f.button :submit, t('.save'), class: 'btn btn-primary' %>
+  </div>
+<% end %>

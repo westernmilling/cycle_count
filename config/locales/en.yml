@@ -64,3 +64,12 @@ en:
       success: 'Cycle count has been successfully deleted'
       failure: 'The cycle count was not successfully deleted'
       invalid: 'The cycle count details are not valid'
+  pallets:
+    title: 'Pallets'
+    new:
+      save: 'Create Pallet'
+      title: 'New Pallet'
+    create:
+      success: 'Pallet has been successfully created'
+      invalid: 'The pallet already exists'
+      failure: 'Pallet was not successfully created'

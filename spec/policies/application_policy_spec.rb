@@ -35,7 +35,7 @@ describe ApplicationPolicy, type: :policy do
   end
 
   describe 'scope' do
-    it { expect(Pundit.policy_scope(user, User).all).to match_array User.all }
+    its(:scope) { is_expected.to eq(Pundit.policy_scope(user, User)) }
   end
 
   describe '.scope' do

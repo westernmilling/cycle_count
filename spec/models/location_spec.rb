@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Location, type: :model do
   subject { build(:location) }
+  it { is_expected.to have_many :cycle_counts }
+  it { is_expected.to have_many(:pallets).through(:cycle_counts) }
   it { is_expected.to belong_to :created_by }
   it { is_expected.to belong_to :updated_by }
 
