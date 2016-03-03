@@ -1,18 +1,18 @@
 language: ruby
 bundler: cache
-services:
-  - mysql
+addons:
+  postgresql: "9.4"
 rvm:
-- 2.2.2
+  - 2.2.2
 
 before_script:
-- export SECRET_KEY_BASE="$(bundle exec rake secret)"
-- cp config/database.example.yml config/database.yml
-- cp config/application.example.yml config/application.yml
-- mysql -e 'create database cycle_count_test;'
+  - export SECRET_KEY_BASE="$(bundle exec rake secret)"
+  - cp config/database.example.yml config/database.yml
+  - cp config/application.example.yml config/application.yml
+  - psql -c 'create database cycle_count_test;' -U postgres
 
 script:
-- xvfb-run -a bundle exec rspec --color --format documentation
+  - xvfb-run -a bundle exec rspec --color --format documentation
 
 notifications:
   slack: wm-it:QEPmqezBb68PGS6a8OWwImYi
