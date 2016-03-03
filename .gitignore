@@ -15,9 +15,13 @@ pickle-email-*.html
 
 config/application.yml
 config/database.yml
+config/deploy.rb
+config/deploy/production.rb
+config/deploy/staging.rb
 
 /.bundle
 /vendor/bundle
+/public/assets/*
 
 # if using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components
