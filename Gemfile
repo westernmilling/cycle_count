@@ -27,6 +27,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano', '3.4.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
   gem 'foreman'
   gem 'letter_opener'
   gem 'rubocop'
