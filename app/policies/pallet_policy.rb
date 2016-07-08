@@ -19,14 +19,18 @@ class PalletPolicy < ApplicationPolicy
   end
 
   def show?
+    false
+  end
+
+  def edit?
     update?
   end
 
   def update?
-    false
+    create?
   end
 
   def destroy?
-    update?
+    show?
   end
 end

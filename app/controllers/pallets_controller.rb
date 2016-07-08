@@ -15,10 +15,18 @@ class PalletsController < ApplicationController
       -> { render_new })
   end
 
+  def edit
+    render_edit
+  end
+
   private
 
   def render_new
     render :new, locals: { pallet: pallet, entry: entry }
+  end
+
+  def render_edit
+    render :edit, locals: { resource: pallet }
   end
 
   def create_pallet
