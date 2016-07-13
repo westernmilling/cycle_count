@@ -73,3 +73,9 @@ en:
       success: 'Pallet has been successfully created'
       invalid: 'The pallet already exists'
       failure: 'Pallet was not successfully created'
+    edit:
+      save: 'Update Pallet'
+      title: 'Edit Pallet'
+    update:
+      success: 'Pallet has been successfully updated'
+      failure: 'Pallet was not successfully updated'

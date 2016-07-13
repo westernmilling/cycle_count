@@ -7,13 +7,16 @@
   </nav>
 <% end %>
 
-<%= simple_form_for(entry, as: :entry, method: :post,
-    url: cycle_count_pallets_path(params[:cycle_count_id])) do |f| %>
+<%= simple_form_for resource,
+                    method: :patch,
+                    url: cycle_count_pallet_path(resource.cycle_count_id,
+                                                 resource.id) do |f| %>
   <div class="form-inputs">
-    <%= error_messages entry %>
+    <%= error_messages resource %>
 
-    <%= f.input :pallet_number %>
+    <%= f.input :notes %>
   </div>
+
   <div class="form-actions">
     <%= f.button :submit, t('.save'), class: 'btn btn-primary' %>
   </div>

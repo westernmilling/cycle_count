@@ -6,8 +6,7 @@ describe UserDecorator, type: :decorator do
           :moderator,
           is_active: is_active,
           created_at: created_at,
-          updated_at: updated_at
-         ).decorate
+          updated_at: updated_at).decorate
   end
   let(:created_at) { Faker::Date.forward(30) }
   let(:updated_at) { Faker::Date.forward(30) }

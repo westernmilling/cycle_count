@@ -1,10 +1,8 @@
 class PalletsController < ApplicationController
+  include BasicCRUDHandler
+
   before_action -> { authorize :pallet }
   respond_to :html
-
-  def new
-    render_new
-  end
 
   def create
     render_new and return unless entry.valid?
@@ -12,17 +10,41 @@ class PalletsController < ApplicationController
     handle_service_result(
       create_pallet,
       -> { redirect_to cycle_count_path(params[:cycle_count_id]) },
-      -> { render_new })
+      -> { render_new }
+    )
   end
 
-  private
+  def update
+    if resource.update_attributes(resource_params)
+      redirect_to cycle_count_path(resource.cycle_count_id),
+                  notice: t('.success')
+    else
+      flash[:alert] = t('.failure')
+      render_edit
+    end
+  end
+
+  protected
 
   def render_new
-    render :new, locals: { pallet: pallet, entry: entry }
+    render :new, locals: { entry: entry }
   end
 
   def create_pallet
     CreatePallet.call(entry_params.merge(params.slice(:cycle_count_id)))
+  end
+
+  def pallet_params
+    return {} if params[:pallet].nil?
+
+    params
+      .require(:pallet)
+      .permit(:pallet_number,
+              :notes)
+  end
+
+  def entry
+    @entry ||= PalletEntry.new(entry_params)
   end
 
   def entry_params
@@ -31,13 +53,5 @@ class PalletsController < ApplicationController
     params
       .require(:entry)
       .permit(:pallet_number)
-  end
-
-  def entry
-    @entry ||= PalletEntry.new(entry_params)
-  end
-
-  def pallet
-    @pallet ||= Pallet.new(entry_params).decorate
   end
 end
