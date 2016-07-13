@@ -1,6 +1,14 @@
 module BasicCRUDHandler
   extend ActiveSupport::Concern
 
+  def new
+    render_new
+  end
+
+  def edit
+    render_edit
+  end
+
   def create
     if resource.save
       redirect_to resource, notice: t('.success')
@@ -17,6 +25,14 @@ module BasicCRUDHandler
       flash[:alert] = t('.failure')
       render :edit, locals: { resource: resource }
     end
+  end
+
+  def render_new
+    render :new, locals: { pallet: resource, entry: entry }
+  end
+
+  def render_edit
+    render :edit, locals: { resource: resource }
   end
 
   def resource

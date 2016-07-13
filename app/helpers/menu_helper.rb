@@ -2,13 +2,13 @@ module MenuHelper
   def menu
     content_tag('ul', class: 'nav navbar-nav navbar-right') do
       if user_signed_in?
-        [
-          root_menu,
-          menu_item(t('locations.title'), locations_path),
-          menu_item(t('cycle_counts.title'), cycle_counts_path),
-          admin_menu,
-          user_menu
-        ].join.html_safe
+        safe_join([
+                    root_menu,
+                    menu_item(t('locations.title'), locations_path),
+                    menu_item(t('cycle_counts.title'), cycle_counts_path),
+                    admin_menu,
+                    user_menu
+                  ])
       else
         menu_item(t('devise.sign_in'), new_user_session_path)
       end
@@ -17,7 +17,7 @@ module MenuHelper
 
   def root_menu
     items = []
-    items.join.html_safe
+    safe_join(items)
   end
 
   def menu_item(name, path, options = nil)

@@ -9,8 +9,11 @@
 
 <%= simple_form_for(entry, as: :entry, method: :post,
     url: cycle_count_pallets_path(params[:cycle_count_id])) do |f| %>
-  <%= render partial: 'form',
-             locals: { f: f, model: entry } %>
+  <div class="form-inputs">
+    <%= error_messages entry %>
+
+    <%= f.input :pallet_number %>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, t('.save'), class: 'btn btn-primary' %>
   </div>

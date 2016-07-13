@@ -1,7 +1,10 @@
 <tr>
   <td><%= pallet.pallet_number %></td>
+  <td><%= pallet.notes %></td>
   <td><%= pallet.check_state %></td>
   <td><%= pallet.check_location %></td>
   <td><%= pallet.check_result %></td>
-  <td><%= link_to 'Edit', edit_cycle_count_pallet_path(pallet.cycle_count_id, pallet), class: 'btn ' %>
+  <td><%= link_to '',
+                  edit_cycle_count_pallet_path(pallet.cycle_count_id, pallet),
+                  class: 'btn btn-default btn-sm glyphicon glyphicon-pencil' %>
 </tr>

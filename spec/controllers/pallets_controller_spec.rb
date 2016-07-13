@@ -63,4 +63,67 @@ RSpec.describe PalletsController, type: :controller do
       it_behaves_like 'an unauthorized access to a resource'
     end
   end
+
+  describe 'GET edit' do
+    before { get :edit, cycle_count_id: pallet.cycle_count_id, id: pallet.id }
+
+    context 'when user is authorized' do
+      let(:authorized?) { true }
+
+      it_behaves_like 'a successful request'
+      it_behaves_like 'an edit request'
+      it { expect(send(:pallet)).to be_kind_of(Pallet) }
+    end
+
+    context 'when user is not authorized' do
+      let(:authorized?) { raise_pundit_error PalletPolicy }
+
+      it_behaves_like 'an unauthorized access to a resource'
+    end
+  end
+
+  describe 'PATCH update' do
+    before do
+      allow(pallet).to receive(:update_attributes) { update? }
+      patch :update,
+            cycle_count_id: pallet.cycle_count_id,
+            id: pallet.id,
+            pallet: attributes_for(:pallet)
+    end
+
+    let(:update?) { fail 'update? not set' }
+
+    context 'when the call is successful' do
+      let(:authorized?) { true }
+      let(:update?) { true }
+
+      it_behaves_like 'a redirect'
+      it { is_expected.to redirect_to(cycle_count_path(pallet.cycle_count_id)) }
+      it do
+        is_expected
+          .to set_flash[:notice]
+          .to I18n.t('pallets.update.success')
+      end
+    end
+
+    context 'when the call is not successful' do
+      let(:authorized?) { true }
+      let(:update?) { false }
+
+      it_behaves_like 'a successful request'
+      it_behaves_like 'an edit request'
+      it do
+        is_expected
+          .to set_flash[:alert]
+          .to(I18n.t('pallets.update.failure'))
+      end
+    end
+
+    context 'when not authorized' do
+      let(:authorized?) { raise_pundit_error PalletPolicy }
+      let(:pallet_params) { nil }
+
+      it_behaves_like 'an unauthorized access to a resource'
+    end
+  end
 end

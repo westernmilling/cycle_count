@@ -17,7 +17,7 @@ class CreatePallet
   end
 
   def pallet_params
-    context.to_h.slice(:cycle_count_id, :pallet_number)
+    context.to_h.slice(:cycle_count_id, :pallet_number, :notes)
   end
 
   def check_pallet_details

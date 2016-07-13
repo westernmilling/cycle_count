@@ -76,3 +76,6 @@ en:
     edit:
       save: 'Update Pallet'
       title: 'Edit Pallet'
+    update:
+      success: 'Pallet has been successfully updated'
+      failure: 'Pallet was not successfully updated'

@@ -5,8 +5,7 @@ describe CycleCountDecorator, type: :decorator do
     build(:cycle_count,
           requested_date: requested_date,
           created_at: created_at,
-          updated_at: updated_at
-         ).decorate
+          updated_at: updated_at).decorate
   end
   let(:created_at) { Faker::Date.forward(30) }
   let(:updated_at) { Faker::Date.forward(30) }
